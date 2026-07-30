@@ -1,0 +1,4 @@
+adminclient@savior.test / password
+owner@savior.test / password
+adminfinance@savior.test / password
+client@savior.test / password

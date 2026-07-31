@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto mt-6">
+<div class="max-w-5xl mx-auto mt-6">
     <div class="flex justify-between items-end mb-4">
         <div>
             <h2 class="text-xl font-semibold text-slate-800">Proyek</h2>

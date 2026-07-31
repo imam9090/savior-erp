@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto mt-6 space-y-4">
+<div class="max-w-6xl mx-auto mt-6 space-y-4">
     <div class="flex justify-between items-end">
         <div>
             <h2 class="text-xl font-semibold text-slate-800">Daftar Invoice</h2>

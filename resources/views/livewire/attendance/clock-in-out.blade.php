@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 mt-6">
+<div class="max-w-5xl mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 mt-6">
     <h2 class="text-lg font-semibold text-slate-800 mb-1">Absensi Hari Ini</h2>
     <p class="text-sm text-slate-400 mb-5">{{ today()->translatedFormat('l, d F Y') }}</p>
 

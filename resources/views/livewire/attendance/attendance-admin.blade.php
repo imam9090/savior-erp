@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 mt-6">
+<div class="max-w-5xl mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 mt-6">
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-lg font-semibold text-gray-800">Absensi Karyawan</h2>
         <input

@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto mt-6">
+<div class="max-w-5xl mx-auto mt-6">
     <div class="bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6">
         <h2 class="text-lg font-semibold text-slate-800 mb-4">Riwayat Absensi Saya</h2>
 

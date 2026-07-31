@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto mt-6 space-y-5">
+<div class="max-w-6xl mx-auto mt-6 space-y-5">
     <div class="flex items-center justify-between bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl px-5 py-3">
         <div>
             <h2 class="text-lg font-semibold text-slate-800">Selamat datang, {{ $user->name }} 👋</h2>

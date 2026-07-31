@@ -10,7 +10,7 @@ class ProductForm extends Component
     public string $name = '';
     public string $type = 'jasa';
     public string $unit = 'Unit';
-    public float $price = 0;
+    public ?float $price = null;
     public string $description = '';
 
     public function save(): void

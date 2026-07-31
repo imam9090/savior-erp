@@ -87,6 +87,25 @@ class Overview extends Component
             ];
         });
 
+        // Kalender bulan ini (kalender biasa, bukan absensi)
+$firstDayOfMonth = now()->startOfMonth();
+$startOffset = $firstDayOfMonth->dayOfWeekIso - 1; // 0 = Senin
+
+$calendarDays = collect();
+
+// Sel kosong sebelum tanggal 1 (biar sejajar sesuai hari)
+for ($i = 0; $i < $startOffset; $i++) {
+    $calendarDays->push(['day' => null, 'isToday' => false]);
+}
+
+for ($day = 1; $day <= now()->daysInMonth; $day++) {
+    $date = $firstDayOfMonth->copy()->addDays($day - 1);
+    $calendarDays->push([
+        'day' => $day,
+        'isToday' => $date->isToday(),
+    ]);
+}
+
         return view('livewire.dashboard.overview', [
             'user' => $user,
             'role' => $role,
@@ -98,6 +117,7 @@ class Overview extends Component
             'weeklyAttendance' => $weeklyAttendance,
             'invoiceTrend' => $invoiceTrend,
             'topClients' => $topClients,
+            'calendarDays' => $calendarDays,
         ]);
     }
 }

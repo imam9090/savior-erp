@@ -1,4 +1,4 @@
-<div class="max-w-2xl w-full mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-6xl p-6 mt-6">
+<div class="max-w-4xl w-full mx-auto bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-6xl p-6 mt-6">
     <h2 class="text-lg font-semibold text-slate-800 mb-4">Tambah Produk/Jasa</h2>
 
     <form wire:submit="save" class="space-y-4">

@@ -62,57 +62,83 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="lg:col-span-2 bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6">
-            <h3 class="text-base font-semibold text-slate-800 mb-1">Aktivitas Absensi 7 Hari Terakhir</h3>
-            <p class="text-xs text-slate-400 mb-6">Riwayat kehadiranmu minggu ini</p>
+    <div class="bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6">
+        <h3 class="text-base font-semibold text-slate-800 mb-1">Aktivitas Absensi 7 Hari</h3>
+        <p class="text-xs text-slate-400 mb-6">Riwayat kehadiranmu minggu ini</p>
 
-            <div class="flex items-end justify-between gap-3 h-32">
-                @foreach ($weeklyAttendance as $day)
-                    <div class="flex-1 flex flex-col items-center gap-2">
-                        <div class="w-full flex items-end justify-center gap-1 h-24">
-                            <div class="w-1/2 max-w-[14px] rounded-t-lg {{ $day['present'] ? 'h-full bg-orange-500' : 'h-[10%] bg-slate-100' }}"></div>
-                            <div class="w-1/2 max-w-[14px] rounded-t-lg {{ ! $day['present'] ? 'h-full bg-slate-300' : 'h-[10%] bg-slate-100' }}"></div>
-                        </div>
-                        <span class="text-xs text-slate-400">{{ $day['label'] }}</span>
+        <div class="flex items-end justify-between gap-3 h-32">
+            @foreach ($weeklyAttendance as $day)
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full flex items-end justify-center gap-1 h-24">
+                        <div class="w-1/2 max-w-[14px] rounded-t-lg {{ $day['present'] ? 'h-full bg-orange-500' : 'h-[10%] bg-slate-100' }}"></div>
+                        <div class="w-1/2 max-w-[14px] rounded-t-lg {{ ! $day['present'] ? 'h-full bg-slate-300' : 'h-[10%] bg-slate-100' }}"></div>
                     </div>
-                @endforeach
-            </div>
-            <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-orange-500"></span> Hadir</span>
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-slate-300"></span> Tidak Hadir</span>
-            </div>
-        </div>
-
-        <div class="bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-            <h3 class="text-base font-semibold text-slate-800 mb-4 self-start">Invoice Lunas</h3>
-
-            @php
-                $pct = $invoiceStats['paid_percentage'] ?? 0;
-                $circumference = 2 * pi() * 40;
-                $offset = $circumference - ($pct / 100) * $circumference;
-            @endphp
-
-            <div class="relative w-32 h-32">
-                <svg class="w-32 h-32 -rotate-90">
-                    <circle cx="64" cy="64" r="40" stroke="#f1f5f9" stroke-width="12" fill="none" />
-                    <circle
-                        cx="64" cy="64" r="40"
-                        stroke="#f97316"
-                        stroke-width="12"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-dasharray="{{ $circumference }}"
-                        stroke-dashoffset="{{ $offset }}"
-                    />
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-2xl font-bold text-slate-800">{{ $pct }}%</span>
+                    <span class="text-xs text-slate-400">{{ $day['label'] }}</span>
                 </div>
-            </div>
-
-            <p class="text-xs text-slate-400 mt-4">{{ $invoiceStats['paid_count'] ?? 0 }} dari {{ $invoiceStats['total_count'] ?? 0 }} invoice lunas</p>
+            @endforeach
+        </div>
+        <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-orange-500"></span> Hadir</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-slate-300"></span> Tidak Hadir</span>
         </div>
     </div>
+
+    <div class="bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6">
+    <h3 class="text-base font-semibold text-slate-800 mb-1">Kalender</h3>
+    <p class="text-xs text-slate-400 mb-4">{{ now()->translatedFormat('F Y') }}</p>
+
+    <div class="grid grid-cols-7 gap-1 mb-1">
+        @foreach (['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'] as $dayName)
+            <div class="text-center text-[10px] font-medium text-slate-400">{{ $dayName }}</div>
+        @endforeach
+    </div>
+
+    <div class="grid grid-cols-7 gap-1">
+        @foreach ($calendarDays as $d)
+            @if ($d['day'] === null)
+                <div></div>
+            @else
+                <div
+                    class="aspect-square flex items-center justify-center text-[11px] rounded-md
+                        {{ $d['isToday'] ? 'bg-orange-500 text-white font-semibold' : 'text-slate-600 hover:bg-slate-50' }}"
+                >
+                    {{ $d['day'] }}
+                </div>
+            @endif
+        @endforeach
+    </div>
+</div>
+
+    <div class="bg-white shadow-sm shadow-slate-200/60 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+        <h3 class="text-base font-semibold text-slate-800 mb-4 self-start">Invoice Lunas</h3>
+
+        @php
+            $pct = $invoiceStats['paid_percentage'] ?? 0;
+            $circumference = 2 * pi() * 40;
+            $offset = $circumference - ($pct / 100) * $circumference;
+        @endphp
+
+        <div class="relative w-28 h-28">
+            <svg class="w-28 h-28 -rotate-90">
+                <circle cx="56" cy="56" r="40" stroke="#f1f5f9" stroke-width="10" fill="none" />
+                <circle
+                    cx="56" cy="56" r="40"
+                    stroke="#f97316"
+                    stroke-width="10"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-dasharray="{{ $circumference }}"
+                    stroke-dashoffset="{{ $offset }}"
+                />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-slate-800">{{ $pct }}%</span>
+            </div>
+        </div>
+
+        <p class="text-xs text-slate-400 mt-3">{{ $invoiceStats['paid_count'] ?? 0 }} dari {{ $invoiceStats['total_count'] ?? 0 }} lunas</p>
+    </div>
+</div>
 
     @if ($topClients->isNotEmpty())
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
